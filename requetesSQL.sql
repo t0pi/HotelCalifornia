@@ -80,4 +80,21 @@ WHERE idChambre NOT IN
            OR (arrivee < '2019-12-20' AND depart >= '2019-12-20' ) 
            OR ('2019-12-12' <= arrivee AND '2019-12-20' >= arrivee) 
 )
+/* je veux une chambre spécifique */
 AND idChambre = 1;
+
+
+SELECT * 
+FROM chambres 
+WHERE idChambre IN 
+(
+    SELECT chambre 
+    FROM   LignesReservation l
+		JOIN reservations r
+        ON l.reservation = r.idReservation
+        JOIN clients c
+        ON r.client = c.idClient
+    WHERE  (arrivee <= '2019-12-12' AND depart >= '2019-12-12') 
+           OR (arrivee < '2019-12-20' AND depart >= '2019-12-20' ) 
+           OR ('2019-12-12' <= arrivee AND '2019-12-20' >= arrivee) 
+);
