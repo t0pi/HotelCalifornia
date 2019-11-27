@@ -1,7 +1,6 @@
 package servlets;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,21 +9,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-import mysql.bll.ChambreManager;
-import mysql.bo.Chambre;
-
 /**
- * Servlet implementation class ReservationServlet
+ * Servlet implementation class Inscription
  */
-@WebServlet("/ReservationServlet")
-public class ReservationServlet extends HttpServlet {
+@WebServlet("/Inscription")
+public class Inscription extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReservationServlet() {
+    public Inscription() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,19 +28,10 @@ public class ReservationServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		try {
-			List<Chambre> ChambresParDate = new ChambreManager().selectionnerChambres();
-			request.setAttribute("ChambresParDate", ChambresParDate);
-			System.out.println(ChambresParDate);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
 		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/reservation.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/inscription.jsp");
 		rd.forward(request, response);
 	}
 

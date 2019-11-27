@@ -5,7 +5,7 @@
 			    <a class="nav-link" href="reservation">Réserver</a>
 			  </li>
 			  <li class="nav-item">
-			    <a class="nav-link" href="#">Créer un compte</a>
+			    <a class="nav-link" href="inscription">Créer un compte</a>
 			  </li>
 			  <li class="nav-item">
 			    <a class="nav-link" href="#">Gérer une réservation</a>
