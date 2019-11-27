@@ -3,13 +3,18 @@ package mysql.dal.jdbc;
 import mysql.dal.ChambreDao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
+
 import java.util.List;
 
 import mysql.bo.Chambre;
+import mysql.bo.LigneReservation;
 
 public class ChambreDaoJdbcImpl implements ChambreDao {
 	
@@ -23,18 +28,26 @@ public class ChambreDaoJdbcImpl implements ChambreDao {
 			       " ON l.reservation = r.idReservation"+
 			       " JOIN clients c" +
 			       " ON r.client = c.idClient"+
-			   " WHERE  (arrivee <= '2019-12-12' AND depart >= '2019-12-12') "+
-			   	   " OR (arrivee < '2019-12-20' AND depart >= '2019-12-20' ) "+
-			   	   " OR ('2019-12-12' <= arrivee AND '2019-12-20' >= arrivee)) ";
+			   " WHERE  (arrivee <= ? AND depart >= ?) "+
+			   	   " OR (arrivee < ? AND depart >= ? ) "+
+			   	   " OR (? <= arrivee AND ? >= arrivee)) ";
 	
 	@Override
-	public List<Chambre> selectByDate() throws Exception {
+	public List<Chambre> selectByDate(LocalDate dateArrivee, LocalDate dateDepart) throws Exception {
 
 		List<Chambre> mesChambres = new ArrayList<Chambre>();
 		
 		try(Connection cnx = MySQLConnection.getConnection()) {
-			Statement stmt = cnx.createStatement();
-			ResultSet rs = stmt.executeQuery(SELECT_ALL_BY_DATE);
+			PreparedStatement pstmt = cnx.prepareStatement(SELECT_ALL_BY_DATE);
+			//Statement stmt = cnx.createStatement();
+			pstmt.setDate(1,  java.sql.Date.valueOf(dateArrivee));
+			pstmt.setDate(2, java.sql.Date.valueOf(dateArrivee));
+			pstmt.setDate(3,  java.sql.Date.valueOf(dateArrivee));
+			pstmt.setDate(4, java.sql.Date.valueOf(dateArrivee));
+			pstmt.setDate(5,  java.sql.Date.valueOf(dateArrivee));
+			pstmt.setDate(6, java.sql.Date.valueOf(dateArrivee));
+
+			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				mesChambres.add(map(rs));
 			}
@@ -53,5 +66,7 @@ public class ChambreDaoJdbcImpl implements ChambreDao {
 		
 		return new Chambre(id, nom, nbLits,prix);
 	}
+
+	
 			
 }

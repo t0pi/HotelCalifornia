@@ -9,12 +9,15 @@
 	  <div class="card-body">
 	    <h5 class="card-title center">Choisissez vos dates de réservation</h5>	    
 	    <form method="post" action="${pageContext.request.contextPath}/reservation" id="reservation" name="reservation" class="form-inline">	    
-			<span class="oi oi-calendar"></span>
-			<input class="form-control" type="text" name="daterange" placeholder="choisissez vos dates" />
-		    <a href="#" name="valider" class="btn btn-primary">Valider</a>
-		</form>  
-
-   
+			<div class="input-group mb-3">
+			  	<div class="input-group-prepend">
+			   		<span class="input-group-text" id="basic-addon1">
+			  		<span class="oi oi-calendar"></span></span>
+			  	</div>
+				<input class="form-control" type="text" name="daterange" placeholder="choisissez vos dates" />
+				<button class="btn btn-primary" name="valider" type="submit">Valider</button>
+			</div>
+		</form>     
 	  </div>
 	</div>
 </div>

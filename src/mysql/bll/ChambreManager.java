@@ -2,6 +2,7 @@ package mysql.bll;
 
 import mysql.dal.DaoFactory;
 
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -16,9 +17,9 @@ private ChambreDao ChambreDao;
 		this.ChambreDao =DaoFactory.getChambreDao();
 	}
 	
-	public List<Chambre> selectionnerChambres() throws Exception
+	public List<Chambre> selectionnerChambres(LocalDate dateArrivee, LocalDate dateDepart) throws Exception
 	{
-		return this.ChambreDao.selectByDate();
+		return this.ChambreDao.selectByDate(dateArrivee, dateDepart);
 	}
 
 	

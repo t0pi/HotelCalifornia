@@ -1,10 +1,43 @@
+body {
+	background-image: url('../img/bg.jpg');
+}
 .nav.topbar {
-	margin: auto;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 30px;
+}
+
+header > h5 {
+	color: #fff;
+	position: absolute;
+	top: 13px;
+}
+
+header > h5 > img {
+	width: 24px;
+	opacity: 0.8;
+}
+
+#reservation > .input-group.mb-3 {
+	width: 100%;
+}
+
+header > ul > li > a {
+	color: #fff;
 }
 
 h1 {
 	text-align: center;
 	margin-top: 20px;
+}
+
+.card.w-20 {
+	
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 13%;
+  flex: 0 0 13%;
+  max-width: 13%;
+
 }
 
 .card.w-50 {
@@ -13,8 +46,17 @@ h1 {
 
 .card-body > h5 {
 	text-align: center;
+	margin-bottom: 40px;
 }
 
+.container > .card.w-100 {
+	padding: 25px;
+}
+
+.col-sm > h5 {
+	text-align: center;
+	margin-bottom: 40px;
+} 
 .inner-addon { 
     position: relative; 
 }

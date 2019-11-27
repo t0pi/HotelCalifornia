@@ -15,6 +15,11 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/Inscription")
 public class Inscription extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	public static final String VUE = "/WEB-INF/inscription.jsp";
+    public static final String CHAMP_NOM = "nom";
+    public static final String CHAMP_PRENOM = "prenom";
+    public static final String CHAMP_ADRESSE = "adresse";
+    public static final String CHAMP_TELEPHONE = "tel";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -31,7 +36,7 @@ public class Inscription extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/inscription.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher(VUE);
 		rd.forward(request, response);
 	}
 

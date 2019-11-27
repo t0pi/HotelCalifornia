@@ -53,9 +53,18 @@ public class Chambre {
 
 	@Override
 	public String toString() {
-		return "Chambre [idChambre=" + idChambre + ", nom=" + nom + ", nbLits=" + nbLits + ", prix=" + prix + "]";
-	}
-	
-	
+		StringBuilder builder = new StringBuilder();
+		builder.append("Chambre [idChambre=");
+		builder.append(idChambre);
+		builder.append(", nom=");
+		builder.append(nom);
+		builder.append(", nbLits=");
+		builder.append(nbLits);
+		builder.append(", prix=");
+		builder.append(prix);
+		builder.append("]");
+		builder.append(System.getProperty("line.separator"));
+		return builder.toString();
+	}	
 	
 }
