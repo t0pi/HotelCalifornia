@@ -25,7 +25,7 @@ public class ChambreDaoJdbcImpl implements ChambreDao {
 			       " ON r.client = c.idClient"+
 			   " WHERE  (arrivee <= '2019-12-12' AND depart >= '2019-12-12') "+
 			   	   " OR (arrivee < '2019-12-20' AND depart >= '2019-12-20' ) "+
-			   	   " OR ('2019-12-12' <= arrivee AND '2019-12-20' >= arrivee) ";
+			   	   " OR ('2019-12-12' <= arrivee AND '2019-12-20' >= arrivee)) ";
 	
 	@Override
 	public List<Chambre> selectByDate() throws Exception {

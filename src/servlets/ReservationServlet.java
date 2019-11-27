@@ -36,7 +36,7 @@ public class ReservationServlet extends HttpServlet {
 		
 		
 		try {
-			List<Chambre> ChambresParDate = new ChambreManager().selectByDate();
+			List<Chambre> ChambresParDate = new ChambreManager().selectionnerChambres();
 			request.setAttribute("ChambresParDate", ChambresParDate);
 			System.out.println(ChambresParDate);
 		} catch (Exception e) {

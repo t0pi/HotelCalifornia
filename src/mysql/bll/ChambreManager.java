@@ -16,15 +16,11 @@ private ChambreDao ChambreDao;
 		this.ChambreDao =DaoFactory.getChambreDao();
 	}
 	
-	public List<Chambre> selectionnerChambre() throws Exception
+	public List<Chambre> selectionnerChambres() throws Exception
 	{
 		return this.ChambreDao.selectByDate();
 	}
 
-	public List<Chambre> selectByDate() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	
 }
