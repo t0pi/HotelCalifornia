@@ -10,6 +10,16 @@
 	    <h5 class="card-title">Choisissez vos dates de réservation</h5>
 	    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
 	    
+	    <form id="form" name="form" class="form-inline">
+    <div class="form-group">
+        <label for="startDate">Start Date</label>
+        <input id="startDate" name="startDate" type="text" class="form-control" />
+        &nbsp;
+        <label for="endDate">End Date</label>
+        <input id="endDate" name="endDate" type="text" class="form-control" />
+    </div>
+</form>
+	    
 		<span class="oi oi-arrow-circle-bottom"></span>          
 	    <a href="#" class="btn btn-primary">Button</a>
 	  </div>
