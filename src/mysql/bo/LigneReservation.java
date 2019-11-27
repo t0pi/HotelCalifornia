@@ -19,6 +19,5 @@ public class LigneReservation {
 		this.arrivee = arrivee;
 		this.depart = depart;
 	}
-
 	
 }
