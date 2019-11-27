@@ -15,7 +15,7 @@ public class ChambreDaoJdbcImpl implements ChambreDao {
 	
 	private final static String SELECT_ALL_BY_DATE = "SELECT * " +
 			"FROM chambres " +
-			"WHERE idChambre IN " +
+			"WHERE idChambre NOT IN " +
 			"("+
 			   " SELECT chambre "+
 			   " FROM   LignesReservation l "+
@@ -48,8 +48,10 @@ public class ChambreDaoJdbcImpl implements ChambreDao {
 	private Chambre map(ResultSet rs) throws SQLException {
 		int id = rs.getInt("idChambre");
 		String nom = rs.getString("nom");
+		int nbLits = rs.getInt("nombreLit");
+		float prix = rs.getFloat("prix");
 		
-		return new Chambre(nom, id);
+		return new Chambre(id, nom, nbLits,prix);
 	}
 			
 }
