@@ -5,7 +5,6 @@ import mysql.bo.Chambre;
 
 public interface ChambreDao {
 	
-
 	List<Chambre> selectByDate() throws Exception;
 
 }
