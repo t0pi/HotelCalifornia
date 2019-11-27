@@ -17,6 +17,9 @@ public class DaoFactory {
 		return new LigneReservationDaoJdbcImpl();
 	}
 	
+	public static ChambreDao getChambreDao() {
+		return new ChambreDaoJdbcImpl();
+	}
 	
 	public static ClientDao getClientDao() {
 		return new ClientDaoJdbcImpl();

@@ -11,7 +11,7 @@ import java.util.List;
 
 import mysql.bo.Chambre;
 
-public abstract class ChambreDaoJdbcImpl implements ChambreDao {
+public class ChambreDaoJdbcImpl implements ChambreDao {
 	
 	private final static String SELECT_ALL_BY_DATE = "SELECT * " +
 			"FROM chambres " +
