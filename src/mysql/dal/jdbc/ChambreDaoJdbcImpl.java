@@ -19,6 +19,9 @@ public class ChambreDaoJdbcImpl implements ChambreDao {
 	private final static String SELECT_ALL = "SELECT * " +
 			"FROM chambres ";
 	
+	private final static String SELECT_ALL_BY_ID = "SELECT * " +
+			"FROM chambres WHERE idChambre = ? ";
+	
 	private final static String SELECT_ALL_BY_DATE = "SELECT * " +
 			"FROM chambres " +
 			"WHERE idChambre NOT IN " +
@@ -101,6 +104,28 @@ public class ChambreDaoJdbcImpl implements ChambreDao {
 			pstmt.setDate(4, java.sql.Date.valueOf(dateDepart));
 			pstmt.setDate(5,  java.sql.Date.valueOf(dateArrivee));
 			pstmt.setDate(6, java.sql.Date.valueOf(dateDepart));
+
+			ResultSet rs = pstmt.executeQuery();
+			System.out.println("pstmt : "+pstmt);
+			while(rs.next()) {
+				mesChambres.add(map(rs));
+			}
+		} catch (SQLException e) {
+			throw e;
+		}
+		
+		return mesChambres;
+	}
+	
+	@Override
+	public List<Chambre> selectAllById(int id) throws Exception {
+
+		List<Chambre> mesChambres = new ArrayList<Chambre>();
+		
+		try(Connection cnx = MySQLConnection.getConnection()) {
+			PreparedStatement pstmt = cnx.prepareStatement(SELECT_ALL_BY_ID);
+			//Statement stmt = cnx.createStatement();
+			pstmt.setInt(1,  id);
 
 			ResultSet rs = pstmt.executeQuery();
 			System.out.println("pstmt : "+pstmt);

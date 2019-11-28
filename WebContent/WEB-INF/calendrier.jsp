@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <% String pageTitle = "R&eacute;servation"; %>
 <jsp:include page="fragments/head.jsp" flush="true">
     <jsp:param name="pageTitle" value="<%=pageTitle%>" />
@@ -30,11 +31,8 @@
 		</div>
 	    	    
 			<div class="card-body">
-	       <c:forEach var="c"  items="${requestScope['chambres']}" > 	  
-	           
-	          
-				
-					<div class="card card-body w-100">
+	       <c:forEach var="c"  items="${requestScope['chambres']}" > 
+				<div class="card card-body w-100">
 	          		<div class="card-content">
 	          			<img src="${pageContext.request.contextPath}/img/room.jpg" />	          			
 		          		<ul>
@@ -59,14 +57,25 @@
 					        </button>
 					      </div>
 					      <div class="modal-body">
-					        <form method="post" action="${pageContext.request.contextPath}/reservation" id="reservation" name="reservation" class="form-inline">
-					        	
-					        
-					        </form>
-					      </div>
+					        <form method="post" action="${pageContext.request.contextPath}/nouvelle-reservation" id="nouvelle-reservation" name="nouvelle-reservation" class="form-inline">
+					        <input type="hidden" value="<c:out value="${requestScope['arrivee']}" />" name="arrivee">
+					        <input type="hidden" value="<c:out value='${requestScope["depart"]}' />" name="depart">
+					        <input type="hidden" value="<c:out value='${c.idChambre}' />" name="chambre">
+					        	<img src="${pageContext.request.contextPath}/img/room.jpg" />
+							        <ul><c:out value="${requestScope['arrivee']}" />
+							        <li>Arriv&eacute;e le <c:out value='${requestScope["dateArrivee"]}' /></li>
+							        <li>D&eacute;part le  <c:out value='${requestScope["dateDepart"]}' /></li>
+								    <li>${c.nbLits} lit(s)</li>								    
+									    <c:set var="nbJrs" value='${requestScope["totalJours"]}' />							    
+									    <c:set var="sum" value='${c.prix * nbJrs}' />
+									    <li><fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${sum}"/>&euro; pour <c:out value='${requestScope["nbJours"]}' /> nuits </li>								    
+							    	</ul>
+							    
 					      <div class="modal-footer">
 					        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-					        <button type="button" class="btn btn-primary">Confirmer</button>
+					        <button type="submit" class="btn btn-primary">Confirmer</button>
+					      </div>
+					        </form>
 					      </div>
 					    </div>
 					  </div>

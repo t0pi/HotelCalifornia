@@ -8,9 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import mysql.bll.ClientManager;
-import mysql.bo.Client;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class Inscription
@@ -23,6 +21,9 @@ public class Inscription extends HttpServlet {
     public static final String CHAMP_PRENOM = "prenom";
     public static final String CHAMP_ADRESSE = "adresse";
     public static final String CHAMP_TELEPHONE = "tel";
+    public static final String CHAMP_ARRIVEE = "arrivee";
+    public static final String CHAMP_DEPART = "depart";
+    public static final String CHAMP_CHAMBRE = "idChambre";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -38,7 +39,7 @@ public class Inscription extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		
+		HttpSession session = request.getSession();
 		RequestDispatcher rd = request.getRequestDispatcher(VUE);
 		rd.forward(request, response);
 	}
@@ -54,8 +55,6 @@ public class Inscription extends HttpServlet {
         String adresse = request.getParameter(CHAMP_ADRESSE);
         String telephone = request.getParameter(CHAMP_TELEPHONE);
         
-        
-        
         try {
         	validationNom(nom); 
         	validationPrenom(prenom); 
@@ -66,16 +65,17 @@ public class Inscription extends HttpServlet {
         	e.printStackTrace();
         }
         
-        try {
-        	Client nouvelArticle = new ClientManager().ajouterClient(nom, prenom, adresse, telephone);
-        	
-        } catch (Exception e ) {
-        	e.printStackTrace();
-        }
-        
-        
-        
-        
+        String arrivee = request.getParameter(CHAMP_ARRIVEE);
+		String depart = request.getParameter(CHAMP_DEPART);
+		String chambre = request.getParameter(CHAMP_CHAMBRE);
+		
+		System.out.println("Votre réservation : "+ arrivee + " - " + depart + " - " + chambre);
+		
+        HttpSession session = request.getSession();
+        session.setAttribute("arrivee", arrivee);
+        session.setAttribute("depart", depart);
+        session.setAttribute("chambre", chambre);
+          
 	}
 	
 	

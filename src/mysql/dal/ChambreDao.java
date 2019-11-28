@@ -1,6 +1,5 @@
 package mysql.dal;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 import mysql.bo.Chambre;
@@ -15,5 +14,7 @@ public interface ChambreDao {
 	List<Chambre> selectByDateEtChambre(LocalDate dateArrivee, LocalDate dateDepart, int idChambre) throws Exception;
 
 	List<Chambre> selectAll() throws Exception;
+
+	List<Chambre> selectAllById(int id) throws Exception;
 
 }
