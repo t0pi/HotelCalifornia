@@ -1,5 +1,6 @@
 body {
 	background-image: url('../img/bg.jpg');
+	background-size: cover;
 }
 .nav.topbar {
 	margin-right: auto;
@@ -33,9 +34,14 @@ header > h5 > img {
 	text-align: left!important;
 }
 
+.card.input {
+	
+	border:none;
+}
+
 .card.input h5 {
 	
-	margin-bottom: 5px!important;
+	margin-bottom: 5px!important; 	
 }
 
 .card.input p {

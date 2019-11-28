@@ -85,7 +85,6 @@ public class Reservation extends HttpServlet {
 			request.setAttribute("totalJours", totalJours);
 			request.setAttribute("nbJours", size);
 
-			System.out.println(ChambresParDate);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

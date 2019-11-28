@@ -11,33 +11,28 @@ public class Reservation {
 	private LocalDate payeele;
 	private List<LigneReservation> ligneReservation;
 
-	public Reservation(int idReservation, Client client, LocalDate le, LocalDate payeele, LigneReservation ligneReservation) {
+	public Reservation(Client client, LocalDate le, LocalDate payeele, LigneReservation ligneReservation) {
 		super();
-		this.idReservation = idReservation;
 		this.client = client;
 		this.le = le;
 		this.payeele = payeele;
 	}
 
+	public Reservation(Reservation reservation) {
+		// TODO Auto-generated constructor stub
+	}
 
+	public Reservation(Client client2, LocalDate now, LocalDate now2) {
+		// TODO Auto-generated constructor stub
+	}
 
-
-
-
-
-
-
+	public Reservation() {
+		// TODO Auto-generated constructor stub
+	}
 
 	public int getIdReservation() {
 		return idReservation;
 	}
-
-
-
-
-
-
-
 
 
 

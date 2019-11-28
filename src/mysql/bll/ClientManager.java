@@ -1,12 +1,21 @@
 package mysql.bll;
 
-
-
-import mysql.bo.Client;
 import mysql.dal.DaoFactory;
 
+import java.util.List;
+
+import mysql.bo.Client;
+import mysql.dal.ClientDao;
+
 public class ClientManager {
- 
+	
+	private ClientDao clientDao;
+	
+	public ClientManager() {
+		this.clientDao =DaoFactory.getClientDao();
+	}
+	
+	
 	public Client ajouterClient(String nom, String prenom, String adresse, String telephone ) throws Exception{
 		
 		try {
@@ -41,7 +50,13 @@ public class ClientManager {
 		
    	}
 	
+    
+    public Client selectionnerClient(String telephone) throws Exception {
+		return this.clientDao.selectByTelephone(telephone);
+	}
 	
+    
+
 	
 		
 	

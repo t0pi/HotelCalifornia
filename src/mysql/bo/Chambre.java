@@ -19,7 +19,10 @@ public class Chambre {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Chambre(String string) {
+	
+	public Chambre(int idChambre) {
+
+		this.idChambre = idChambre;
 		// TODO Auto-generated constructor stub
 	}
 
