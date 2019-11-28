@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+
 import mysql.bo.Client;
 import mysql.dal.ClientDao;
 
@@ -20,6 +21,9 @@ public class ClientDaoJdbcImpl implements ClientDao {
 			"WHERE NOT EXISTS ( "+
 				"SELECT telephone FROM clients WHERE telephone = ?"+
 				")";
+	
+	
+	private final static String SELECT_CLIENT_BY_PHONE = " SELECT idClient FROM Clients WHERE telephone = ?";
 	
 	//private final static String UPDATE_CLIENT = "UPDATE Clients SET nom = ?, prenom = ?, adresse = ?, telephone = ? WHERE idClient = ?";
 	
@@ -53,6 +57,22 @@ public class ClientDaoJdbcImpl implements ClientDao {
 		}
 		return client;
 	}
+	
+	
+	public Client selectByTelephone( String telephone) throws Exception {
+		Client nouveauClient = new Client();
+           try(Connection cnx = MySQLConnection.getConnection()) {
+			PreparedStatement pStmt = cnx.prepareStatement(SELECT_CLIENT_BY_PHONE);
+			pStmt.setString(1, telephone);
+			ResultSet rs = pStmt.executeQuery();
+			
+           } catch ( Exception e) {
+        	   
+           }
+		return nouveauClient;
+	}
+	
+	
 	
 /*
 	@Override
