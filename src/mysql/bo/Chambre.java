@@ -19,6 +19,10 @@ public class Chambre {
 		// TODO Auto-generated constructor stub
 	}
 
+	public Chambre(String string) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getIdChambre() {
 		return idChambre;
 	}
@@ -66,5 +70,4 @@ public class Chambre {
 		builder.append(System.getProperty("line.separator"));
 		return builder.toString();
 	}	
-	
 }

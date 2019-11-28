@@ -12,4 +12,8 @@ public interface ChambreDao {
 
 	List<Chambre> selectByDate(LocalDate dateArrivee, LocalDate dateDepart) throws Exception;
 
+	List<Chambre> selectByDateEtChambre(LocalDate dateArrivee, LocalDate dateDepart, int idChambre) throws Exception;
+
+	List<Chambre> selectAll() throws Exception;
+
 }

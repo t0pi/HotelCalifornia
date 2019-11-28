@@ -1,13 +1,10 @@
 package servlets;
 
 import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -75,6 +72,9 @@ public class Reservation extends HttpServlet {
         
         try {
 			List<Chambre> ChambresParDate = new ChambreManager().selectionnerChambres(arrivee, depart);
+			List<Chambre> listeChambres = new ChambreManager().selectionnerChambres();
+			
+			System.out.println("les chambres : " + listeChambres);
 			
 			List<LocalDate> totalDates = new ArrayList<>();
 	        while (!arrivee.isAfter(depart)) {

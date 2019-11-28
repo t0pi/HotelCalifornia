@@ -18,6 +18,12 @@ header > h5 > img {
 	opacity: 0.8;
 }
 
+.card-subtitle {
+	text-align: center;
+	color: #9a9a9a;
+	margin-bottom: 10px;
+}
+
 #reservation > .input-group.mb-3 {
 	width: 100%;
 }
@@ -30,6 +36,11 @@ h1 {
 	text-align: center;
 	margin-top: 20px;
 }
+
+.btn.btn-primary.text-center {
+	width: 100%;
+	margin-top: 20px;
+}	
 
 .card.w-20 {
 	

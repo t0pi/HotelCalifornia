@@ -4,6 +4,14 @@
 		
 		<script>
 		
+
+
+		$(document).ready(function() {
+		    $('#signInForm').bootstrapValidator();
+		});
+
+
+		
 		$(function() {
 		  $('input[name="daterange"]').daterangepicker({
 		    opens: 'left',

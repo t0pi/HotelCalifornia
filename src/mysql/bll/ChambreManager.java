@@ -21,6 +21,16 @@ private ChambreDao ChambreDao;
 	{
 		return this.ChambreDao.selectByDate(dateArrivee, dateDepart);
 	}
+	
+	public List<Chambre> selectionnerChambresParId(LocalDate dateArrivee, LocalDate dateDepart, int idChambre) throws Exception
+	{
+		return this.ChambreDao.selectByDateEtChambre(dateArrivee, dateDepart, idChambre);
+	}
+	
+	public List<Chambre> selectionnerChambres() throws Exception
+	{
+		return this.ChambreDao.selectAll();
+	}
 
 	
 	

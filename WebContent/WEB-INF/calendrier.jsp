@@ -12,6 +12,9 @@
 		    <div class="col-xs">
 		      <select class="form-control form-control-sm">
 				  <option>Choisissez une chambre</option>
+				  <option>Choisissez une chambre</option>
+				  <option>Choisissez une chambre</option>
+				  <option>Choisissez une chambre</option>
 				</select>
 		    </div>
 		    <div class="col-sm">
