@@ -1,5 +1,7 @@
 package mysql.bo;
 
+
+
 public class Client {
 	
 	private int idClient;
@@ -8,10 +10,20 @@ public class Client {
 	private String adresse;
 	private String telephone;
 	
-	
+	public Client() {
+		
+	}
 	public Client(int idClient, String nom, String prenom, String adresse, String telephone) {
 		super();
 		this.idClient = idClient;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.adresse = adresse;
+		this.telephone = telephone;
+	}
+	
+	public Client(String nom, String prenom, String adresse, String telephone) {
+		this();
 		this.nom = nom;
 		this.prenom = prenom;
 		this.adresse = adresse;
