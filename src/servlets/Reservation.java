@@ -76,16 +76,16 @@ public class Reservation extends HttpServlet {
 			
 			System.out.println("les chambres : " + listeChambres);
 			
-			List<LocalDate> totalDates = new ArrayList<>();
+			/*List<LocalDate> totalDates = new ArrayList<>();
 	        while (!arrivee.isAfter(depart)) {
 	            totalDates.add(arrivee);
 	            arrivee = arrivee.plusDays(1);
 	        }
 	        
-	        /*System.out.printf("total dates: ");
+	        System.out.printf("total dates: ");
 	        for (LocalDate temp : totalDates) {
 				System.out.println(temp);
-			}*/
+			}
 	        
 	        Map<String, List<String>> hm = new HashMap<String, List<String>>();
 	        List<String> values = new ArrayList<String>();
@@ -93,7 +93,7 @@ public class Reservation extends HttpServlet {
 	        values.add("Value 2");
 	        hm.put("Key1", values);
 
-	        List<Calendrier> monCalendrier = new ArrayList<Calendrier>();
+	        List<Calendrier> monCalendrier = new ArrayList<Calendrier>();*/
 	        
 	        // to get the arraylist
 	        

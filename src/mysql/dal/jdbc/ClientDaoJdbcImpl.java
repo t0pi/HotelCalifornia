@@ -41,6 +41,7 @@ public class ClientDaoJdbcImpl implements ClientDao {
 			pStmt.setString(6, client.getPrenom());
 			
 			int n = pStmt.executeUpdate();
+			
 				
 			ResultSet rs = pStmt.getGeneratedKeys();
 			if(rs.next()) {
@@ -86,7 +87,7 @@ public class ClientDaoJdbcImpl implements ClientDao {
 		// TODO Auto-generated method stub
 		return null;
 	}
-   
+   */
 	
 	public static Client map(ResultSet rs) throws SQLException {
 		int idClient = rs.getInt("idClient");
@@ -100,6 +101,6 @@ public class ClientDaoJdbcImpl implements ClientDao {
 		
 	}
 	
-	*/
+
 
 }

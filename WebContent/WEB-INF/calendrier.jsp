@@ -34,7 +34,8 @@
 	          <div class="card card-body w-20">
 				    <li>${c.nom}</li>
 				    <li>${c.nbLits} lit(s)</li>
-				    <li>${c.prix}&euro; la nuit</li>	
+				    <li>${c.prix}&euro; la nuit</li>
+				    	
 			</div>		  
 				</c:forEach>
 	                   
