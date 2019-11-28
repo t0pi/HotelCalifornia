@@ -79,7 +79,17 @@ WHERE idChambre NOT IN
     WHERE  (arrivee <= '2019-12-12' AND depart >= '2019-12-12') 
            OR (arrivee < '2019-12-20' AND depart >= '2019-12-20' ) 
            OR ('2019-12-12' <= arrivee AND '2019-12-20' >= arrivee) 
-)
-/* je veux une chambre spécifique */
-AND idChambre = 1;
-
+);
+/* je veux une chambre spécifique:
+AND idChambre = 2;
+ */
+ 
+ 
+INSERT INTO Client (nom, prenom, adresse, telephone) 
+SELECT  *
+WHERE   NOT EXISTS 
+        (   SELECT  1
+            FROM    client 
+            WHERE   Softwarename = @SoftwareName 
+            AND     SoftwareSystemType = @Softwaretype
+        );

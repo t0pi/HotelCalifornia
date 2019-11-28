@@ -11,12 +11,19 @@ import mysql.bo.Client;
 import mysql.dal.ClientDao;
 
 public class ClientDaoJdbcImpl implements ClientDao {
-  
-	private final static String INSERT_CLIENT = "INSERT INTO Clients(nom, prenom, adresse, telephone ) VALUES(?,?, ?, ?)";
+
+	//private final static String INSERT_CLIENT = "INSERT INTO Clients(nom, prenom, adresse, telephone ) VALUES(?,?, ?, ?)";	
 	
-	private final static String UPDATE_CLIENT = "UPDATE Clients SET nom = ?, prenom = ?, adresse = ?, telephone = ? WHERE idClient = ?";
+	private final static String INSERT_CLIENT_WHERE_NOT_EXIST = "INSERT INTO clients "+
+			"(nom, prenom, adresse, telephone) "+
+			"SELECT ?,?,?,? "+
+			"WHERE NOT EXISTS ( "+
+				"SELECT nom, prenom FROM clients WHERE nom = ? AND prenom = ? "+
+				")";
 	
-	private final static String DELETE_CLIENT = "DELETE FROM Clients WHERE idClient = ?";
+	//private final static String UPDATE_CLIENT = "UPDATE Clients SET nom = ?, prenom = ?, adresse = ?, telephone = ? WHERE idClient = ?";
+	
+	//private final static String DELETE_CLIENT = "DELETE FROM Clients WHERE idClient = ?";
 	
 
 	
@@ -25,11 +32,13 @@ public class ClientDaoJdbcImpl implements ClientDao {
 	public Client insert(Client client) throws Exception {
 		try(Connection cnx = MySQLConnection.getConnection()) {
 			
-			PreparedStatement pStmt = cnx.prepareStatement(INSERT_CLIENT, Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement pStmt = cnx.prepareStatement(INSERT_CLIENT_WHERE_NOT_EXIST, Statement.RETURN_GENERATED_KEYS);
 			pStmt.setString(1, client.getNom());
 			pStmt.setString(2, client.getPrenom());
 			pStmt.setString(3, client.getAdresse());
 			pStmt.setString(4, client.getTelephone());
+			pStmt.setString(5, client.getNom());
+			pStmt.setString(6, client.getPrenom());
 			
 			int n = pStmt.executeUpdate();
 				
@@ -44,7 +53,8 @@ public class ClientDaoJdbcImpl implements ClientDao {
 		}
 		return client;
 	}
-
+	
+/*
 	@Override
 	public void update(int idClient) throws Exception {
          try(Connection cnx = MySQLConnection.getConnection()) {
@@ -90,6 +100,6 @@ public class ClientDaoJdbcImpl implements ClientDao {
 		
 	}
 	
-	
+	*/
 
 }
