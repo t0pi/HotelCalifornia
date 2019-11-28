@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import mysql.bll.ClientManager;
+import mysql.bo.Client;
+
 /**
  * Servlet implementation class Inscription
  */
@@ -44,8 +47,52 @@ public class Inscription extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		/* Récupération des champs du formulaire. */
+        String nom = request.getParameter( CHAMP_NOM );
+        String prenom = request.getParameter(CHAMP_PRENOM); 
+        String adresse = request.getParameter(CHAMP_ADRESSE);
+        String telephone = request.getParameter(CHAMP_TELEPHONE);
+        
+        
+        
+        try {
+        	validationNom(nom); 
+        	validationPrenom(prenom); 
+        	validationAdresse(adresse); 
+        	validationTelephone(telephone);
+        	
+        } catch (Exception e) {
+        	e.printStackTrace();
+        }
+        
+        try {
+        	Client nouvelArticle = new ClientManager().ajouterClient(nom, prenom, adresse, telephone);
+        	
+        } catch (Exception e ) {
+        	e.printStackTrace();
+        }
+        
+        
+        
+        
 	}
+	
+	
+	private void validationNom( String CHAMP_NOM ) throws Exception{
+		
+	}
+	
+     private void validationPrenom( String CHAMP_PRENOM ) throws Exception{
+		
+	}
+     
+     private void validationAdresse ( String CHAMP_ADRESSE ) throws Exception {
+    	 
+     }
+     
+     private void validationTelephone( String CHAMP_TELEPHONE ) throws Exception {
+    	 
+     }
 
 }
