@@ -83,13 +83,14 @@ WHERE idChambre NOT IN
 /* je veux une chambre spécifique:
 AND idChambre = 2;
  */
- 
- 
-INSERT INTO Client (nom, prenom, adresse, telephone) 
-SELECT  *
-WHERE   NOT EXISTS 
-        (   SELECT  1
-            FROM    client 
-            WHERE   Softwarename = @SoftwareName 
-            AND     SoftwareSystemType = @Softwaretype
-        );
+    
+        INSERT INTO clients
+			(nom, prenom, adresse, telephone)
+			SELECT 'pierre','martin','1 rue du chemin','0750422369' 
+			WHERE
+			NOT EXISTS (
+				SELECT telephone FROM clients WHERE telephone = '0750422369'
+				);
+                
+                
+                SELECT nom from chambres;

@@ -3,10 +3,7 @@ package servlets;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,7 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import classes.Calendrier;
 import mysql.bll.ChambreManager;
 import mysql.bo.Chambre;
 
@@ -64,15 +60,18 @@ public class Reservation extends HttpServlet {
 
         LocalDate arrivee = LocalDate.parse(dateArrivee);
         LocalDate depart = LocalDate.parse(dateDepart);
+        
+        System.out.printf("*********** dates: "+arrivee+" - "+ depart);
+        System.out.println();
         try {
-            validationEmail( dates );
+            validationDates( dates );
         } catch (Exception e) {
             System.out.println("erreur : dates invalides");
         }  
         
         try {
 			List<Chambre> ChambresParDate = new ChambreManager().selectionnerChambres(arrivee, depart);
-			List<Chambre> listeChambres = new ChambreManager().selectionnerChambres();
+			List<Chambre> listeChambres = new ChambreManager().selectionnerNomsChambres();
 			
 			System.out.println("les chambres : " + listeChambres);
 			
@@ -96,16 +95,19 @@ public class Reservation extends HttpServlet {
 	        List<Calendrier> monCalendrier = new ArrayList<Calendrier>();*/
 	        
 	        // to get the arraylist
-	        
+
 			request.setAttribute("chambres", ChambresParDate);
+			request.setAttribute("nomsChambres", listeChambres);
 			System.out.println(ChambresParDate);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
         
-        
+
         request.setAttribute("arrivee", arrivee);
         request.setAttribute("depart", depart);
+        request.setAttribute("dateArrivee", lesDates[0]);
+        request.setAttribute("dateDepart", lesDates[1]);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher(VUE_CALENDRIER) ;
         
         // inclusion de cette ressource
@@ -113,7 +115,7 @@ public class Reservation extends HttpServlet {
 
 }
 
-private void validationEmail( String dates ) throws Exception{}
+private void validationDates( String dates ) throws Exception{}
 
 }
 

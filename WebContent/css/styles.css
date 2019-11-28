@@ -51,6 +51,19 @@ h1 {
 
 }
 
+.card-content {
+	display: flex;
+}
+
+.card-content > img {
+	width: 220px;
+}
+
+.card-content > ul > li {
+	list-style-type: none;
+}
+
+
 .card.w-50 {
 	margin:auto;
 }
@@ -60,8 +73,10 @@ h1 {
 	margin-bottom: 40px;
 }
 
-.container > .card.w-100 {
-	padding: 25px;
+.container > .card.calendrier {
+	padding: 25px;	
+	max-height: 800px;
+	overflow-y: scroll;
 }
 
 .col-sm > h5 {

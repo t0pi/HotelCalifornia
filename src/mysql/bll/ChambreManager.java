@@ -27,7 +27,7 @@ private ChambreDao ChambreDao;
 		return this.ChambreDao.selectByDateEtChambre(dateArrivee, dateDepart, idChambre);
 	}
 	
-	public List<Chambre> selectionnerChambres() throws Exception
+	public List<Chambre> selectionnerNomsChambres() throws Exception
 	{
 		return this.ChambreDao.selectAll();
 	}

@@ -96,13 +96,14 @@ public class ChambreDaoJdbcImpl implements ChambreDao {
 			PreparedStatement pstmt = cnx.prepareStatement(SELECT_ALL_BY_DATE);
 			//Statement stmt = cnx.createStatement();
 			pstmt.setDate(1,  java.sql.Date.valueOf(dateArrivee));
-			pstmt.setDate(2, java.sql.Date.valueOf(dateArrivee));
+			pstmt.setDate(2, java.sql.Date.valueOf(dateDepart));
 			pstmt.setDate(3,  java.sql.Date.valueOf(dateArrivee));
-			pstmt.setDate(4, java.sql.Date.valueOf(dateArrivee));
+			pstmt.setDate(4, java.sql.Date.valueOf(dateDepart));
 			pstmt.setDate(5,  java.sql.Date.valueOf(dateArrivee));
-			pstmt.setDate(6, java.sql.Date.valueOf(dateArrivee));
+			pstmt.setDate(6, java.sql.Date.valueOf(dateDepart));
 
 			ResultSet rs = pstmt.executeQuery();
+			System.out.println("pstmt : "+pstmt);
 			while(rs.next()) {
 				mesChambres.add(map(rs));
 			}
