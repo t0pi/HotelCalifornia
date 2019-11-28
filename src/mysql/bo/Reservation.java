@@ -1,16 +1,18 @@
 package mysql.bo;
 
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 public class Reservation {
 	
 	private int idReservation;
 	private Client client;
-	private Date le;
-	private Date payeele;
-	
-	
-	public Reservation(int idReservation, Client client, Date le, Date payeele) {
+	private LocalDate le;
+	private LocalDate payeele;
+	private List<LigneReservation> ligneReservation;
+
+	public Reservation(int idReservation, Client client, LocalDate le, LocalDate payeele, LigneReservation ligneReservation) {
 		super();
 		this.idReservation = idReservation;
 		this.client = client;
@@ -19,9 +21,25 @@ public class Reservation {
 	}
 
 
+
+
+
+
+
+
+
+
 	public int getIdReservation() {
 		return idReservation;
 	}
+
+
+
+
+
+
+
+
 
 
 	public void setIdReservation(int idReservation) {
@@ -29,9 +47,25 @@ public class Reservation {
 	}
 
 
+
+
+
+
+
+
+
+
 	public Client getClient() {
 		return client;
 	}
+
+
+
+
+
+
+
+
 
 
 	public void setClient(Client client) {
@@ -39,24 +73,90 @@ public class Reservation {
 	}
 
 
-	public Date getLe() {
+
+
+
+
+
+
+
+
+	public LocalDate getLe() {
 		return le;
 	}
 
 
-	public void setLe(Date le) {
+
+
+
+
+
+
+
+
+	public void setLe(LocalDate le) {
 		this.le = le;
 	}
 
 
-	public Date getPayeele() {
+
+
+
+
+
+
+
+
+	public LocalDate getPayeele() {
 		return payeele;
 	}
 
 
-	public void setPayeele(Date payeele) {
+
+
+
+
+
+
+
+
+	public void setPayeele(LocalDate payeele) {
 		this.payeele = payeele;
 	}
+
+
+
+
+
+
+
+
+
+
+	public List<LigneReservation> getLigneReservation() {
+		return ligneReservation;
+	}
+
+
+
+
+
+
+
+
+
+
+	public void setLigneReservation(List<LigneReservation> ligneReservation) {
+		this.ligneReservation = ligneReservation;
+	}
+
+
+
+
+
+
+
+
 
 
 	@Override
