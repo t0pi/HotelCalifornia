@@ -18,7 +18,7 @@ public class ClientDaoJdbcImpl implements ClientDao {
 			"(nom, prenom, adresse, telephone) "+
 			"SELECT ?,?,?,? "+
 			"WHERE NOT EXISTS ( "+
-				"SELECT nom, prenom FROM clients WHERE nom = ? AND prenom = ? "+
+				"SELECT telephone FROM clients WHERE telephone = ?"+
 				")";
 	
 	//private final static String UPDATE_CLIENT = "UPDATE Clients SET nom = ?, prenom = ?, adresse = ?, telephone = ? WHERE idClient = ?";
@@ -37,8 +37,7 @@ public class ClientDaoJdbcImpl implements ClientDao {
 			pStmt.setString(2, client.getPrenom());
 			pStmt.setString(3, client.getAdresse());
 			pStmt.setString(4, client.getTelephone());
-			pStmt.setString(5, client.getNom());
-			pStmt.setString(6, client.getPrenom());
+			pStmt.setString(5, client.getTelephone());
 			
 			int n = pStmt.executeUpdate();
 			

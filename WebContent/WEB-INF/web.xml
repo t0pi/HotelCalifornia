@@ -25,4 +25,12 @@
     <servlet-name>inscription</servlet-name>
     <url-pattern>/inscription</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>ajouterReservation</servlet-name>
+    <servlet-class>servlets.AjouterReservation</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ajouterReservation</servlet-name>
+    <url-pattern>/nouvelle-reservation</url-pattern>
+  </servlet-mapping>
 </web-app>

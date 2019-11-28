@@ -28,6 +28,8 @@ header > h5 > img {
 	width: 100%;
 }
 
+
+
 header > ul > li > a {
 	color: #fff;
 }
@@ -51,6 +53,19 @@ h1 {
 
 }
 
+.card-content {
+	display: flex;
+}
+
+.card-content > img {
+	width: 220px;
+}
+
+.card-content > ul > li {
+	list-style-type: none;
+}
+
+
 .card.w-50 {
 	margin:auto;
 }
@@ -60,8 +75,10 @@ h1 {
 	margin-bottom: 40px;
 }
 
-.container > .card.w-100 {
-	padding: 25px;
+.container > .card.calendrier {
+	padding: 25px;	
+	max-height: 800px;
+	overflow-y: scroll;
 }
 
 .col-sm > h5 {
@@ -70,6 +87,20 @@ h1 {
 } 
 .inner-addon { 
     position: relative; 
+}
+
+.modal-body > form > .modal-footer  {	
+	width: 100%;
+}
+
+
+.modal-body > form > ul  {
+	padding: 12px 0;
+	width: 100%;
+}
+
+.modal-body > form > ul >li {
+	list-style-type: none;
 }
 
 /* style icon */

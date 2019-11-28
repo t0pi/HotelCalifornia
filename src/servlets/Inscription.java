@@ -60,11 +60,11 @@ public class Inscription extends HttpServlet {
         } catch (Exception e ) {
         	e.printStackTrace();
         }
-        /*
+        
         RequestDispatcher rd = request.getRequestDispatcher(VUE);
 		rd.forward(request, response);
         
-        */
+        
         
 	}
 	
