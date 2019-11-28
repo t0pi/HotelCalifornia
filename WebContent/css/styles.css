@@ -28,6 +28,32 @@ header > h5 > img {
 	width: 100%;
 }
 
+.resa h5 {
+	margin-bottom: 5px!important;
+	text-align: left!important;
+}
+
+.card.input h5 {
+	
+	margin-bottom: 5px!important;
+}
+
+.card.input p {
+	
+	text-align: center;
+	color: #9a9a9a;
+	font-size: 13px;
+}
+
+
+.resa ul {
+	padding: 0;
+}
+
+.resa ul>li {
+	list-style-type: none;
+}
+
 
 
 header > ul > li > a {
