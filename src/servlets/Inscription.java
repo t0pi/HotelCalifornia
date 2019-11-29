@@ -74,7 +74,9 @@ public class Inscription extends HttpServlet {
         	e.printStackTrace();
         }
         
-        
+        RequestDispatcher rd =
+                request.getRequestDispatcher("/WEB-INF//inscriptionTerminee.jsp");
+        rd.forward(request, response);
         
         
 	}

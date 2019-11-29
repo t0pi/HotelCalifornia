@@ -33,4 +33,12 @@
     <servlet-name>ajouterReservation</servlet-name>
     <url-pattern>/nouvelle-reservation</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>confirmer</servlet-name>
+    <servlet-class>servlets.Confirmation</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>confirmer</servlet-name>
+    <url-pattern>/confirmation</url-pattern>
+  </servlet-mapping>
 </web-app>

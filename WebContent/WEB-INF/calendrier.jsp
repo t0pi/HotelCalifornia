@@ -37,11 +37,11 @@
 	          			<img src="${pageContext.request.contextPath}/img/room.jpg" />	          			
 		          		<ul>
 						    <li>${c.nom}</li>
-						    <li>${c.nbLits} lit(s)</li>
-						    <li>${c.prix}&euro; la nuit</li>
+						    <li style="color: #888;font-size: 16px;">${c.nbLits} lit(s)</li>
+						    <li><strong>${c.prix}&euro;</strong> la nuit</li>
 						    <li style="padding-top: 20px;">
 							    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#chambre${c.idChambre}">
-	  								R&eacute;server
+	  								R&eacute;server cette chambre
 								</button>
 						    </li>
 					    </ul>
@@ -51,7 +51,7 @@
 					  <div class="modal-dialog" role="document">
 					    <div class="modal-content">
 					      <div class="modal-header">
-					        <h5 class="modal-title" id="exampleModalLabel">${c.nom}</h5>
+					        <h5 class="modal-title" id="exampleModalLabel">${c.nom} <span style="color: #555;font-size: 15px;">${c.nbLits} lit(s)</span></h5>
 					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					          <span aria-hidden="true">&times;</span>
 					        </button>
@@ -62,13 +62,11 @@
 					        <input type="hidden" value="<c:out value='${requestScope["depart"]}' />" name="depart">
 					        <input type="hidden" value="<c:out value='${c.idChambre}' />" name="chambre">
 					        	<img src="${pageContext.request.contextPath}/img/room.jpg" />
-							        <ul><c:out value="${requestScope['arrivee']}" />
-							        <li>Arriv&eacute;e le <c:out value='${requestScope["dateArrivee"]}' /></li>
-							        <li>D&eacute;part le  <c:out value='${requestScope["dateDepart"]}' /></li>
-								    <li>${c.nbLits} lit(s)</li>								    
+							        <ul>							        
 									    <c:set var="nbJrs" value='${requestScope["totalJours"]}' />							    
 									    <c:set var="sum" value='${c.prix * nbJrs}' />
-									    <li><fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${sum}"/>&euro; pour <c:out value='${requestScope["nbJours"]}' /> nuits </li>								    
+									    <li><strong style="font-size:25px;"><fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${sum}"/>&euro;</strong> pour <c:out value='${requestScope["nbJours"]}' /> nuits </li>	
+							        <li style="color: #999;font-size: 14px;">Du <c:out value='${requestScope["dateArrivee"]}' /> au <c:out value='${requestScope["dateDepart"]}' /></li>						    							    
 							    	</ul>
 							    
 					      <div class="modal-footer">

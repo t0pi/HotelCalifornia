@@ -18,7 +18,7 @@
 					    <p>Vous devez être inscrit pour réserver.</p>
 					    <input style="width: 100%;" type="text" required  data-bv-notempty-message="Ce champs est requis" class="form-control" name="tel" id="tel" placeholder="Entrez votre numéro de téléphone">
 					    
-		  				<button style="display: block;" type="submit" class="btn btn-primary text-center">Confirmer</button>
+		  				<button name="ok" style="display: block;" type="submit" class="btn btn-primary text-center">Confirmer</button>
 					    <a style="text-decoration: underline; display: inherit; text-align: center; margin-top:140px;" href="${pageContext.request.contextPath}/inscription" >Par encore inscrit ? C'est par ici.</a>
 				    </div>
 				    </div>

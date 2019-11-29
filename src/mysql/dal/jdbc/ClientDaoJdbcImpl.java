@@ -65,10 +65,11 @@ public class ClientDaoJdbcImpl implements ClientDao {
 	public Client selectByTelephone( String telephone) throws Exception {
 		Client nouveauClient = new Client();
            try(Connection cnx = MySQLConnection.getConnection()) {
+
 			PreparedStatement pStmt = cnx.prepareStatement(SELECT_CLIENT_BY_PHONE);
 			pStmt.setString(1, telephone);
+
 			ResultSet rs = pStmt.executeQuery();
-			System.out.println("--------------- query client "+ pStmt);
 			if (rs.next()) {
 				nouveauClient.setIdClient(rs.getInt("idClient"));
 			}

@@ -82,17 +82,19 @@ public class AjouterReservation extends HttpServlet {
 		String arrivee=(String)session.getAttribute("arrivee");
 		String depart=(String)session.getAttribute("depart");
 		String idChambre=(String)session.getAttribute("chambre");
+		String ok=(String)session.getAttribute("ok");
 		String tel = request.getParameter(CHAMP_TEL);		
 
 
-		System.out.println("Votre réservation : "+ arrivee + " - " + depart + " - " + idChambre);
+		//System.out.println("Votre réservation : "+ arrivee + " - " + depart + " - " + idChambre);
 		if(tel != null) {
 			try {
 				
 				Client client = new ClientManager().selectionnerClient(tel);
-				System.out.println("******** le client" + client);
+				System.out.println("******** le client : " + client);
 				System.out.println(client.getIdClient());
 				Chambre chambre = new ChambreManager().selectionnerChambresById(Integer.valueOf(idChambre));
+				System.out.println("******** la chambre : " + chambre);
 				Reservation nouvelleReservation = new ReservationManager().insert(client, chambre, arrivee, depart);
 				
 		        
@@ -102,9 +104,13 @@ public class AjouterReservation extends HttpServlet {
 			}
 
 		}
-		
+		if(ok != null) {
 
-        this.getServletContext().getRequestDispatcher( "/WEB-INF/confirmation.jsp" ).forward( request, response );
+			RequestDispatcher rd =
+	                request.getRequestDispatcher("/WEB-INF/confirmation.jsp");
+	        rd.forward(request, response);
+		}
+
           
 		// TODO Auto-generated method stub
 		doGet(request, response);
