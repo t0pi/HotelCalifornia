@@ -45,13 +45,15 @@ public class Reservation extends HttpServlet {
         String[] lesDates = dates.split(" - ");
                 
        /* formatages des dates des input en format adapté à sql */
+        
+        /* pattern de formatage entrée et sortie */
         DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
+        /* formatage des chaines de caractère avec le pattern donné */
         String dateArrivee =  LocalDate.parse(lesDates[0], inputFormat).format(outputFormat);
         String dateDepart =  LocalDate.parse(lesDates[1], inputFormat).format(outputFormat);
         
-        /* création d'un objet Local date avec les string formatées*/
+        /* création d'une LocalDate avec les string formatées*/
         LocalDate arrivee = LocalDate.parse(dateArrivee);
         LocalDate depart = LocalDate.parse(dateDepart);      
         
