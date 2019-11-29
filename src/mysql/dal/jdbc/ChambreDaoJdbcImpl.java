@@ -52,25 +52,6 @@ public class ChambreDaoJdbcImpl implements ChambreDao {
 			   	   "AND idChambre = ?";
 	
 	
-/*	@Override
-	public List<Chambre> selectAll() throws Exception {
-		List<Chambre> chambres = new ArrayList<Chambre>();
-		try(Connection cnx = MySQLConnection.getConnection())
-		{
-			PreparedStatement pstmt = cnx.prepareStatement(SELECT_ALL);
-			ResultSet rs = pstmt.executeQuery();
-			while(rs.next())
-			{
-				chambres.add(new Chambre(rs.getString("nom")));
-			}
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		return chambres;
-	}
-	*/
 	@Override
 	public List<Chambre> selectAll() throws Exception {
 
@@ -106,6 +87,8 @@ public class ChambreDaoJdbcImpl implements ChambreDao {
 			pstmt.setDate(6, java.sql.Date.valueOf(dateDepart));
 
 			ResultSet rs = pstmt.executeQuery();
+
+			System.out.println("::::::::::::::: SQL : select chambres dispo par dates OK");
 			while(rs.next()) {
 				mesChambres.add(map(rs));
 			}
@@ -173,9 +156,5 @@ public class ChambreDaoJdbcImpl implements ChambreDao {
 		
 		return new Chambre(id, nom, nbLits,prix);
 	}
-	
-	
-
-	
 			
 }

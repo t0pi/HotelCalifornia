@@ -50,16 +50,12 @@ public class ReservationDaoJdbcImpl implements ReservationDao {
 					pStmt = cnx.prepareStatement(INSERT_LIGNE_RESERVATION);
 					pStmt.setInt(1, reservation.getIdReservation());
 					pStmt.setInt(2, i+1);
-					System.out.println("getligne reservation::::::::::: "+reservation.getLigneReservation().get(i));
-					System.out.println("************* get id chambre" + lr.getChambre().getIdChambre());
 					pStmt.setInt(3, lr.getChambre().getIdChambre());
 					pStmt.setDate(4, java.sql.Date.valueOf(lr.getArrivee()));
 					pStmt.setDate(5, java.sql.Date.valueOf(lr.getDepart()));
-					System.out.println("**************************************PSTMT 2 :"+pStmt);
-					pStmt.executeUpdate();
-
-					System.out.println("**************************************PSTMT 2 :"+pStmt);					
+					pStmt.executeUpdate();				
 					pStmt.close();
+					System.out.println("::::::::::::::: SQL : insert ligne reservation OK");
 				 }
 				
 			} catch (SQLException e) {

@@ -6,16 +6,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
-import mysql.bo.Chambre;
 import mysql.bo.Client;
 import mysql.dal.ClientDao;
 
 public class ClientDaoJdbcImpl implements ClientDao {
-
-	//private final static String INSERT_CLIENT = "INSERT INTO Clients(nom, prenom, adresse, telephone ) VALUES(?,?, ?, ?)";	
 	
 	private final static String INSERT_CLIENT_WHERE_NOT_EXIST = "INSERT INTO clients "+
 			"(nom, prenom, adresse, telephone) "+
@@ -58,6 +53,8 @@ public class ClientDaoJdbcImpl implements ClientDao {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
+
+		System.out.println("::::::::::::::: SQL : insert client OK");
 		return client;
 	}
 	
@@ -77,33 +74,10 @@ public class ClientDaoJdbcImpl implements ClientDao {
            } catch ( Exception e) {
         	   
            }
+
+			System.out.println("::::::::::::::: SQL : select client par numero de telephone OK");
 		return nouveauClient;
 	}
-	
-	public Client selectByTel(String telephone) throws Exception {
-
-		Client client = null;
-		
-		try(Connection cnx = MySQLConnection.getConnection()) {
-			PreparedStatement pStmt = cnx.prepareStatement(SELECT_CLIENT_BY_PHONE);
-			//Statement stmt = cnx.createStatement();
-			pStmt.setString(1, telephone);
-
-			ResultSet rs = pStmt.executeQuery();
-			if(rs.next()) {
-				client = map(rs);
-			}
-		} catch (SQLException e) {
-			throw e;
-		}
-		
-		return client;
-	}
-	
-	
-
-	
-	
 	
 /*
 	@Override
@@ -140,13 +114,15 @@ public class ClientDaoJdbcImpl implements ClientDao {
    */
 	
 	public static Client map(ResultSet rs) throws SQLException {
-		int idClient = rs.getInt("idClient");
-		
-		
+		int idClient = rs.getInt("idClient");	
 		return new Client(idClient);
 		
 	}
-	
 
 
+	@Override
+	public Client selectByTel(String telephone) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

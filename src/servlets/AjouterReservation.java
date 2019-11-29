@@ -43,31 +43,30 @@ public class AjouterReservation extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 HttpSession session = request.getSession();		 
-	        
-		 String arrivee = request.getParameter(CHAMP_ARRIVEE);
+		// on récupère les valeurs que l'on a envoyé dans le POST de reservation.jsp
+		 	String arrivee = request.getParameter(CHAMP_ARRIVEE);
 			String depart = request.getParameter(CHAMP_DEPART);
 			String idCchambre = request.getParameter(CHAMP_CHAMBRE);
 			
-			
+			// on les stocke dans la session
 	        session.setAttribute("arrivee", arrivee);
 	        session.setAttribute("depart", depart);
 	        session.setAttribute("chambre", idCchambre);
 	        
 	        try {
 	        	/* On récupère les info de la chambre avec l'id donné en session */
-			if (idCchambre != null) {
-				session.setAttribute("chambre", idCchambre);
-				Chambre chambre = new ChambreManager().selectionnerChambresById(Integer.valueOf(idCchambre));
-			
-				request.setAttribute("chambres", chambre);
-			}
-					        
+				if (idCchambre != null) {
+					session.setAttribute("chambre", idCchambre);
+					Chambre chambre = new ChambreManager().selectionnerChambresById(Integer.valueOf(idCchambre));
 				
+					request.setAttribute("chambres", chambre);
+				}
 				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		 
+	        /* Et enfin on affiche la vue */
 	        RequestDispatcher rd = request.getRequestDispatcher(VUE);
 			rd.forward(request, response);
 	}
@@ -82,21 +81,15 @@ public class AjouterReservation extends HttpServlet {
 		String arrivee=(String)session.getAttribute("arrivee");
 		String depart=(String)session.getAttribute("depart");
 		String idChambre=(String)session.getAttribute("chambre");
-		String ok=(String)session.getAttribute("ok");
+		String ok = request.getParameter("ok");
 		String tel = request.getParameter(CHAMP_TEL);		
 
-
-		//System.out.println("Votre réservation : "+ arrivee + " - " + depart + " - " + idChambre);
 		if(tel != null) {
 			try {
 				
 				Client client = new ClientManager().selectionnerClient(tel);
-				System.out.println("******** le client : " + client);
-				System.out.println(client.getIdClient());
 				Chambre chambre = new ChambreManager().selectionnerChambresById(Integer.valueOf(idChambre));
-				System.out.println("******** la chambre : " + chambre);
 				Reservation nouvelleReservation = new ReservationManager().insert(client, chambre, arrivee, depart);
-				
 		        
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
