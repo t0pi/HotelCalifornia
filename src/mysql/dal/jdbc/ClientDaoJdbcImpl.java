@@ -6,8 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
-
+import mysql.bo.Chambre;
 import mysql.bo.Client;
 import mysql.dal.ClientDao;
 
@@ -43,7 +45,7 @@ public class ClientDaoJdbcImpl implements ClientDao {
 			pStmt.setString(4, client.getTelephone());
 			pStmt.setString(5, client.getTelephone());
 			
-			int n = pStmt.executeUpdate();
+			//int n = pStmt.executeUpdate();
 			
 				
 			ResultSet rs = pStmt.getGeneratedKeys();
@@ -65,11 +67,17 @@ public class ClientDaoJdbcImpl implements ClientDao {
 			PreparedStatement pStmt = cnx.prepareStatement(SELECT_CLIENT_BY_PHONE);
 			pStmt.setString(1, telephone);
 			ResultSet rs = pStmt.executeQuery();
+			while (rs.next()) {
+				nouveauClient.setIdClient(rs.getInt("idClient"));
+			}
+			
            } catch ( Exception e) {
         	   
            }
 		return nouveauClient;
 	}
+	
+
 	
 	
 	

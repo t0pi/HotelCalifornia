@@ -83,14 +83,29 @@ WHERE idChambre NOT IN
 /* je veux une chambre spécifique:
 AND idChambre = 2;
  */
+ 
+SELECT * FROM chambres WHERE idChambre NOT IN 
+( SELECT chambre  
+FROM   LignesReservation l  
+JOIN reservations r  
+ON l.reservation = r.idReservation 
+JOIN clients c 
+ON r.client = c.idClient 
+WHERE  (arrivee <= '2019-12-11' AND depart >= '2019-12-11')  
+OR (arrivee < '2019-12-11' AND depart >= '2019-12-11' )  
+OR ('2019-12-11' <= arrivee AND '2019-12-11' >= arrivee));
     
         INSERT INTO clients
 			(nom, prenom, adresse, telephone)
-			SELECT 'pierre','martin','1 rue du chemin','0750422369' 
+			SELECT 'pierre','martin','1 rue du chemin','0750422367' 
 			WHERE
 			NOT EXISTS (
-				SELECT telephone FROM clients WHERE telephone = '0750422369'
+				SELECT telephone FROM clients WHERE telephone = '0750422367'
 				);
                 
                 
                 SELECT nom from chambres;
+                
+                
+                
+                SELECT idClient FROM clients WHERE telephone = '0750422367';

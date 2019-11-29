@@ -5,7 +5,6 @@ import mysql.dal.DaoFactory;
 import java.time.LocalDate;
 import java.util.List;
 
-
 import mysql.bo.Chambre;
 import mysql.dal.ChambreDao;
 

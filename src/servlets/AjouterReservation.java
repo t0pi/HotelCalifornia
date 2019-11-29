@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -12,7 +13,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import mysql.bll.ChambreManager;
+import mysql.bll.ClientManager;
+import mysql.bll.ReservationManager;
 import mysql.bo.Chambre;
+import mysql.bo.Client;
+import mysql.bo.Reservation;
+import mysql.bo.LigneReservation;
+
 
 /**
  * Servlet implementation class AjouterReservation
@@ -24,6 +31,7 @@ public class AjouterReservation extends HttpServlet {
     public static final String CHAMP_ARRIVEE = "arrivee";
     public static final String CHAMP_DEPART = "depart";
     public static final String CHAMP_CHAMBRE = "chambre";
+    public static final String CHAMP_TEL = "tel";
        
        
     /**
@@ -44,7 +52,6 @@ public class AjouterReservation extends HttpServlet {
 			String depart = request.getParameter(CHAMP_DEPART);
 			String chambre = request.getParameter(CHAMP_CHAMBRE);
 			
-			System.out.println("Votre réservation : "+ arrivee + " - " + depart + " - " + chambre);
 			
 	        session.setAttribute("arrivee", arrivee);
 	        session.setAttribute("depart", depart);
@@ -52,11 +59,13 @@ public class AjouterReservation extends HttpServlet {
 	        
 	        try {
 	        	/* On récupère les info de la chambre avec l'id donné en session */
+			if (chambre != null) {
+				session.setAttribute("chambre", chambre);
 				List<Chambre> ChambresParId = new ChambreManager().selectionnerChambresById(Integer.valueOf(chambre));
-				
-				System.out.println("les chambres : " + ChambresParId);
-
+			
 				request.setAttribute("chambres", ChambresParId);
+			}
+					        
 				
 				
 			} catch (Exception e) {
@@ -72,33 +81,37 @@ public class AjouterReservation extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String arrivee = request.getParameter(CHAMP_ARRIVEE);
-		String depart = request.getParameter(CHAMP_DEPART);
-		String chambre = request.getParameter(CHAMP_CHAMBRE);
-		
+        HttpSession session = request.getSession();        
+
+		String arrivee=(String)session.getAttribute("arrivee");
+		String depart=(String)session.getAttribute("depart");
+		String chambre=(String)session.getAttribute("chambre");
+		String tel = request.getParameter(CHAMP_TEL);		
+
+
 		System.out.println("Votre réservation : "+ arrivee + " - " + depart + " - " + chambre);
-		
-        HttpSession session = request.getSession();
-        session.setAttribute("arrivee", arrivee);
-        session.setAttribute("depart", depart);
-        session.setAttribute("chambre", chambre);
-        
-        try {
-        	/* On récupère les info de la chambre avec l'id donné en session */
-			List<Chambre> ChambresParId = new ChambreManager().selectionnerChambresById(Integer.valueOf(chambre));
-			
-			System.out.println("les chambres : " + ChambresParId);
+		if(tel != null) {
+			try {
+				
+				Client client = new ClientManager().selectionnerClient(tel);
+				System.out.println(client);
+				System.out.println(LocalDate.now());
+				Reservation nouvelleReservation = new Reservation();
+				nouvelleReservation.setClient(client);
+				nouvelleReservation.setLe(LocalDate.now());
+				nouvelleReservation.setPayeele(LocalDate.now());
+				System.out.println(nouvelleReservation);
+				LocalDate dateArrivee = LocalDate.parse(arrivee);
+		        LocalDate dateDepart = LocalDate.parse(depart); 
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
-			request.setAttribute("chambres", ChambresParId);
-
-			request.setAttribute("arrivee", arrivee);
-			request.setAttribute("depart", depart);
-			
-			
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
-        
+		
+               
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

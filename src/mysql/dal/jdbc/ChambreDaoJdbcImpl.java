@@ -106,7 +106,6 @@ public class ChambreDaoJdbcImpl implements ChambreDao {
 			pstmt.setDate(6, java.sql.Date.valueOf(dateDepart));
 
 			ResultSet rs = pstmt.executeQuery();
-			System.out.println("pstmt : "+pstmt);
 			while(rs.next()) {
 				mesChambres.add(map(rs));
 			}
@@ -128,7 +127,6 @@ public class ChambreDaoJdbcImpl implements ChambreDao {
 			pstmt.setInt(1,  id);
 
 			ResultSet rs = pstmt.executeQuery();
-			System.out.println("pstmt : "+pstmt);
 			while(rs.next()) {
 				mesChambres.add(map(rs));
 			}

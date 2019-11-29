@@ -22,6 +22,11 @@ public class LigneReservation {
 	}
 
 
+	public LigneReservation(Reservation nouvelleReservation, Chambre nouvelleChambre, LocalDate dateArrivee,
+			LocalDate dateDepart) {
+	}
+
+
 	public Reservation getReservation() {
 		return reservation;
 	}
