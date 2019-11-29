@@ -13,6 +13,14 @@ public class Client {
 	public Client() {
 		
 	}
+	public Client(String nom, String prenom, String adresse, String telephone) {
+		this();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.adresse = adresse;
+		this.telephone = telephone;
+	}
+
 	public Client(int idClient, String nom, String prenom, String adresse, String telephone) {
 		super();
 		this.idClient = idClient;
@@ -22,14 +30,9 @@ public class Client {
 		this.telephone = telephone;
 	}
 	
-	public Client(String nom, String prenom, String adresse, String telephone) {
-		this();
-		this.nom = nom;
-		this.prenom = prenom;
-		this.adresse = adresse;
-		this.telephone = telephone;
-	}
 
+	
+	
 
 	public Client(int idClient) {
 		// TODO Auto-generated constructor stub

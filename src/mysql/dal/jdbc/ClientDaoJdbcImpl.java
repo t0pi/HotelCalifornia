@@ -45,9 +45,9 @@ public class ClientDaoJdbcImpl implements ClientDao {
 			pStmt.setString(4, client.getTelephone());
 			pStmt.setString(5, client.getTelephone());
 			
-			//int n = pStmt.executeUpdate();
 
-			System.out.println("--------------- query client "+ pStmt);
+			int n = pStmt.executeUpdate();
+			
 				
 			ResultSet rs = pStmt.getGeneratedKeys();
 			if(rs.next()) {

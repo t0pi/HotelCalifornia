@@ -93,7 +93,6 @@ public class AjouterReservation extends HttpServlet {
 				System.out.println("******** le client" + client);
 				System.out.println(client.getIdClient());
 				Chambre chambre = new ChambreManager().selectionnerChambresById(Integer.valueOf(idChambre));
-				
 				Reservation nouvelleReservation = new ReservationManager().insert(client, chambre, arrivee, depart);
 				
 		        
