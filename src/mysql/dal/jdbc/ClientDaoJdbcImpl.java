@@ -65,7 +65,6 @@ public class ClientDaoJdbcImpl implements ClientDao {
 			PreparedStatement pStmt = cnx.prepareStatement(SELECT_CLIENT_BY_PHONE);
 			pStmt.setString(1, telephone);
 			ResultSet rs = pStmt.executeQuery();
-			
            } catch ( Exception e) {
         	   
            }
