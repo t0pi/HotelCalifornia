@@ -10,20 +10,30 @@ public class LigneReservation {
 	private LocalDate arrivee;
 	private LocalDate depart;
 	
+	public LigneReservation() {
+		
+	}
+	
 	
 	public LigneReservation(Reservation reservation, int ligneReservation, Chambre chambre, LocalDate arrivee,
 			LocalDate depart) {
-		super();
-		this.reservation = reservation;
+		this(reservation, chambre, arrivee, depart);
 		this.ligneReservation = ligneReservation;
-		this.chambre = chambre;
-		this.arrivee = arrivee;
-		this.depart = depart;
+	}
+	
+	public Reservation Reservation() {
+		return reservation;
 	}
 
 
 	public LigneReservation(Reservation nouvelleReservation, Chambre nouvelleChambre, LocalDate dateArrivee,
 			LocalDate dateDepart) {
+		this();
+		this.reservation = nouvelleReservation;
+		this.chambre = nouvelleChambre;
+		this.arrivee = dateArrivee;
+		this.depart = dateDepart;
+		
 	}
 
 

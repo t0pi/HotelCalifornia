@@ -17,7 +17,7 @@ public class ReservationDaoJdbcImpl implements ReservationDao {
 	
 	private final static String INSERT_RESERVATION = "INSERT INTO Reservations( client, le, payeeLe) VALUES(?, ?, ?)";
 	
-	private final static String INSERT_LIGNE_RESERVATION = "INSERT INTO LignesReservation(reservation, ligneReservation, chambre, arrivée, depart) VALUES(?, ?, ?,?, ?)";
+	private final static String INSERT_LIGNE_RESERVATION = "INSERT INTO LignesReservation(reservation, ligneReservation, chambre, arrivee, depart) VALUES(?, ?, ?,?, ?)";
 
 	@Override
 	public List<Reservation> selectAllByName() throws Exception {
@@ -55,12 +55,13 @@ public class ReservationDaoJdbcImpl implements ReservationDao {
 					pStmt.setInt(3, lr.getChambre().getIdChambre());
 					pStmt.setDate(4, java.sql.Date.valueOf(lr.getArrivee()));
 					pStmt.setDate(5, java.sql.Date.valueOf(lr.getDepart()));
+					System.out.println("**************************************PSTMT 2 :"+pStmt);
 					pStmt.executeUpdate();
 
 					System.out.println("**************************************PSTMT 2 :"+pStmt);					
 					pStmt.close();
 				 }
-				cnx.commit();
+				
 			} catch (SQLException e) {
 				e.printStackTrace();
 				cnx.rollback();

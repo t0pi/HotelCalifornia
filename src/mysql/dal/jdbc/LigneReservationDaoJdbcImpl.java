@@ -7,8 +7,7 @@ public class LigneReservationDaoJdbcImpl implements  LigneReservationDao {
 
 	@Override
 	public LigneReservation insert(LigneReservation ligneReservation) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return ligneReservation;
 	}
 
 }
