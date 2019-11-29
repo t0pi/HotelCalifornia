@@ -117,9 +117,9 @@ public class ChambreDaoJdbcImpl implements ChambreDao {
 	}
 	
 	@Override
-	public List<Chambre> selectAllById(int id) throws Exception {
+	public Chambre selectAllById(int id) throws Exception {
 
-		List<Chambre> mesChambres = new ArrayList<Chambre>();
+		Chambre chambre = null;
 		
 		try(Connection cnx = MySQLConnection.getConnection()) {
 			PreparedStatement pstmt = cnx.prepareStatement(SELECT_ALL_BY_ID);
@@ -127,14 +127,14 @@ public class ChambreDaoJdbcImpl implements ChambreDao {
 			pstmt.setInt(1,  id);
 
 			ResultSet rs = pstmt.executeQuery();
-			while(rs.next()) {
-				mesChambres.add(map(rs));
+			if(rs.next()) {
+				chambre = map(rs);
 			}
 		} catch (SQLException e) {
 			throw e;
 		}
 		
-		return mesChambres;
+		return chambre;
 	}
 	
 	@Override

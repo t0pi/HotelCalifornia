@@ -50,20 +50,20 @@ public class AjouterReservation extends HttpServlet {
 	        
 		 String arrivee = request.getParameter(CHAMP_ARRIVEE);
 			String depart = request.getParameter(CHAMP_DEPART);
-			String chambre = request.getParameter(CHAMP_CHAMBRE);
+			String idCchambre = request.getParameter(CHAMP_CHAMBRE);
 			
 			
 	        session.setAttribute("arrivee", arrivee);
 	        session.setAttribute("depart", depart);
-	        session.setAttribute("chambre", chambre);
+	        session.setAttribute("chambre", idCchambre);
 	        
 	        try {
 	        	/* On récupère les info de la chambre avec l'id donné en session */
-			if (chambre != null) {
-				session.setAttribute("chambre", chambre);
-				List<Chambre> ChambresParId = new ChambreManager().selectionnerChambresById(Integer.valueOf(chambre));
+			if (idCchambre != null) {
+				session.setAttribute("chambre", idCchambre);
+				Chambre chambre = new ChambreManager().selectionnerChambresById(Integer.valueOf(idCchambre));
 			
-				request.setAttribute("chambres", ChambresParId);
+				request.setAttribute("chambres", chambre);
 			}
 					        
 				
@@ -85,25 +85,20 @@ public class AjouterReservation extends HttpServlet {
 
 		String arrivee=(String)session.getAttribute("arrivee");
 		String depart=(String)session.getAttribute("depart");
-		String chambre=(String)session.getAttribute("chambre");
+		String idChambre=(String)session.getAttribute("chambre");
 		String tel = request.getParameter(CHAMP_TEL);		
 
 
-		System.out.println("Votre réservation : "+ arrivee + " - " + depart + " - " + chambre);
+		System.out.println("Votre réservation : "+ arrivee + " - " + depart + " - " + idChambre);
 		if(tel != null) {
 			try {
 				
 				Client client = new ClientManager().selectionnerClient(tel);
-				System.out.println(client);
-				System.out.println(LocalDate.now());
-				Reservation nouvelleReservation = new Reservation();
-				nouvelleReservation.setClient(client);
-				nouvelleReservation.setLe(LocalDate.now());
-				nouvelleReservation.setPayeele(LocalDate.now());
-				System.out.println(nouvelleReservation);
-				LocalDate dateArrivee = LocalDate.parse(arrivee);
-		        LocalDate dateDepart = LocalDate.parse(depart); 
+				Chambre chambre = new ChambreManager().selectionnerChambresById(Integer.valueOf(idChambre));
 				
+				Reservation nouvelleReservation = new ReservationManager().insert(client, chambre, arrivee, depart);
+				
+		        
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

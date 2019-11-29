@@ -25,9 +25,7 @@ public class ReservationDaoJdbcImpl implements ReservationDao {
 		return null;
 	}
 
-	public Reservation insertReservation(int client, LocalDate le, LocalDate payeele) throws Exception {
-		return insertReservation(0, null, null);
-	}
+
 	
 	@Override
 	public Reservation insert(Reservation reservation) throws Exception {
@@ -46,9 +44,9 @@ public class ReservationDaoJdbcImpl implements ReservationDao {
 					int id = rs.getInt(1);
 					reservation.setIdReservation(id);
 				}
-				System.out.println("our culprit:"+ reservation.getLigneReservation());
 				
-				 /*for( int i = 0 ; i < reservation.getLigneReservation().size() ; i++ ) {
+				
+				for( int i = 0 ; i < reservation.getLigneReservation().size() ; i++ ) {
 					LigneReservation lr = reservation.getLigneReservation().get(i);
 					pStmt = cnx.prepareStatement(INSERT_LIGNE_RESERVATION);
 					pStmt.setInt(1, reservation.getIdReservation());
@@ -60,7 +58,7 @@ public class ReservationDaoJdbcImpl implements ReservationDao {
 					System.out.println(pStmt);
 					pStmt.close();
 				 }
-				cnx.commit();*/
+				cnx.commit();
 			} catch (SQLException e) {
 				e.printStackTrace();
 				cnx.rollback();

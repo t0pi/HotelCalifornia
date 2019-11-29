@@ -15,6 +15,6 @@ public interface ChambreDao {
 
 	List<Chambre> selectAll() throws Exception;
 
-	List<Chambre> selectAllById(int id) throws Exception;
+	Chambre selectAllById(int id) throws Exception;
 
 }
