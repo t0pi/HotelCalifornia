@@ -53,21 +53,48 @@ public class Inscription extends HttpServlet {
         String prenom = request.getParameter(CHAMP_PRENOM); 
         String adresse = request.getParameter(CHAMP_ADRESSE);
         String telephone = request.getParameter(CHAMP_TELEPHONE);
+       
+        
+        
         
         try {
-        	Client nouvelClient = new ClientManager().ajouterClient(nom, prenom, adresse, telephone);
+        	validationNom(nom); 
+        	validationPrenom(prenom); 
+        	validationAdresse(adresse); 
+        	validationTelephone(telephone);
+        	
+        } catch (Exception e) {
+        	e.printStackTrace();
+        }
+        
+        try {
+        	Client nouveauClient = new ClientManager().ajouterClient(nom, prenom, adresse, telephone);
         	
         } catch (Exception e ) {
         	e.printStackTrace();
         }
         
-        RequestDispatcher rd = request.getRequestDispatcher(VUE);
-		rd.forward(request, response);
         
         
         
 	}
 	
+	
+	private void validationNom( String nom ) throws Exception{
+		
+	}
+	
+     private void validationPrenom( String prenom ) throws Exception{
+		
+	}
+     
+     private void validationAdresse ( String adresse ) throws Exception {
+    	 
+     }
+   
+     private void validationTelephone( String telephone ) throws Exception {
+    	 
+     }
 	
 	
 

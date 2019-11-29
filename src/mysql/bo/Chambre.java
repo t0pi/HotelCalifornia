@@ -15,9 +15,6 @@ public class Chambre {
 		this.prix = prix;
 	}
 
-	public Chambre(String nom2, int id) {
-		// TODO Auto-generated constructor stub
-	}
 
 	
 	public Chambre(int idChambre) {
