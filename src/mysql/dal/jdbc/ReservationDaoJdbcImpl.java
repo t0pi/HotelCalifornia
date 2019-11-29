@@ -5,12 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
 import java.util.List;
 
+import mysql.dal.CodesResultatDAL;
 import mysql.bo.LigneReservation;
 import mysql.bo.Reservation;
 import mysql.dal.ReservationDao;
+import gestionErreurs.BusinessException;
 
 public class ReservationDaoJdbcImpl implements ReservationDao {
 	
@@ -60,7 +61,12 @@ public class ReservationDaoJdbcImpl implements ReservationDao {
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
-				cnx.rollback();
+				BusinessException businessException = new BusinessException();
+				businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_ECHEC);
+				throw businessException;
+				/*e.printStackTrace();
+				System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+				cnx.rollback();*/
 			}
 		} catch (Exception e) {
 			// TODO: handle exception

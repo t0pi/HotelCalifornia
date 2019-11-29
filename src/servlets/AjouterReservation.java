@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import gestionErreurs.BusinessException;
 import mysql.bll.ChambreManager;
 import mysql.bll.ClientManager;
 import mysql.bll.ReservationManager;
@@ -81,8 +82,8 @@ public class AjouterReservation extends HttpServlet {
 		String arrivee=(String)session.getAttribute("arrivee");
 		String depart=(String)session.getAttribute("depart");
 		String idChambre=(String)session.getAttribute("chambre");
-		String ok = request.getParameter("ok");
-		String tel = request.getParameter(CHAMP_TEL);		
+		String tel = request.getParameter(CHAMP_TEL);	
+		String submit = request.getParameter("submit");	
 
 		if(tel != null) {
 			try {
@@ -92,21 +93,22 @@ public class AjouterReservation extends HttpServlet {
 				Reservation nouvelleReservation = new ReservationManager().insert(client, chambre, arrivee, depart);
 		        
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
+				request.setAttribute("listeCodesErreur",((BusinessException) e).getListeCodesErreur());
 			}
-
 		}
-		if(ok != null) {
+		if(submit != null) {
 
 			RequestDispatcher rd =
 	                request.getRequestDispatcher("/WEB-INF/confirmation.jsp");
 	        rd.forward(request, response);
 		}
+		else {
+	          
+			// TODO Auto-generated method stub
+			doGet(request, response);
+		}
 
-          
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }
