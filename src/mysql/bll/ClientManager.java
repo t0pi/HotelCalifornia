@@ -52,12 +52,8 @@ public class ClientManager {
 	
     
     public Client selectionnerClient(String telephone) throws Exception {
-		return this.clientDao.selectByTelephone(telephone);
+		return this.clientDao.selectByTel(telephone);
 	}
-	
-    
-
-	
 		
 	
 }

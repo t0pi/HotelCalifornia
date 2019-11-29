@@ -46,7 +46,8 @@ public class ClientDaoJdbcImpl implements ClientDao {
 			pStmt.setString(5, client.getTelephone());
 			
 			//int n = pStmt.executeUpdate();
-			
+
+			System.out.println("--------------- query client "+ pStmt);
 				
 			ResultSet rs = pStmt.getGeneratedKeys();
 			if(rs.next()) {
@@ -67,7 +68,8 @@ public class ClientDaoJdbcImpl implements ClientDao {
 			PreparedStatement pStmt = cnx.prepareStatement(SELECT_CLIENT_BY_PHONE);
 			pStmt.setString(1, telephone);
 			ResultSet rs = pStmt.executeQuery();
-			while (rs.next()) {
+			System.out.println("--------------- query client "+ pStmt);
+			if (rs.next()) {
 				nouveauClient.setIdClient(rs.getInt("idClient"));
 			}
 			
@@ -76,6 +78,27 @@ public class ClientDaoJdbcImpl implements ClientDao {
            }
 		return nouveauClient;
 	}
+	
+	public Client selectByTel(String telephone) throws Exception {
+
+		Client client = null;
+		
+		try(Connection cnx = MySQLConnection.getConnection()) {
+			PreparedStatement pStmt = cnx.prepareStatement(SELECT_CLIENT_BY_PHONE);
+			//Statement stmt = cnx.createStatement();
+			pStmt.setString(1, telephone);
+
+			ResultSet rs = pStmt.executeQuery();
+			if(rs.next()) {
+				client = map(rs);
+			}
+		} catch (SQLException e) {
+			throw e;
+		}
+		
+		return client;
+	}
+	
 	
 
 	
@@ -117,13 +140,9 @@ public class ClientDaoJdbcImpl implements ClientDao {
 	
 	public static Client map(ResultSet rs) throws SQLException {
 		int idClient = rs.getInt("idClient");
-		String nom = rs.getString("nom");
-		String prenom = rs.getString("prenom");
-		String adresse = rs.getString("adresse");
-		String telephone = rs.getString("telephone");
 		
 		
-		return new Client(idClient, nom, prenom, adresse, telephone);
+		return new Client(idClient);
 		
 	}
 	

@@ -1,8 +1,6 @@
 package servlets;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,8 +16,6 @@ import mysql.bll.ReservationManager;
 import mysql.bo.Chambre;
 import mysql.bo.Client;
 import mysql.bo.Reservation;
-import mysql.bo.LigneReservation;
-
 
 /**
  * Servlet implementation class AjouterReservation
@@ -94,6 +90,8 @@ public class AjouterReservation extends HttpServlet {
 			try {
 				
 				Client client = new ClientManager().selectionnerClient(tel);
+				System.out.println("******** le client" + client);
+				System.out.println(client.getIdClient());
 				Chambre chambre = new ChambreManager().selectionnerChambresById(Integer.valueOf(idChambre));
 				
 				Reservation nouvelleReservation = new ReservationManager().insert(client, chambre, arrivee, depart);
@@ -106,7 +104,9 @@ public class AjouterReservation extends HttpServlet {
 
 		}
 		
-               
+
+        this.getServletContext().getRequestDispatcher( "/WEB-INF/confirmation.jsp" ).forward( request, response );
+          
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

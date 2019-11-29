@@ -35,10 +35,14 @@ public class ReservationDaoJdbcImpl implements ReservationDao {
 				
 				PreparedStatement pStmt = cnx.prepareStatement(INSERT_RESERVATION, Statement.RETURN_GENERATED_KEYS);
 				pStmt.setInt(1, reservation.getClient().getIdClient());
+				System.out.println("***************"+reservation.getClient().getIdClient());
 				pStmt.setDate(2, java.sql.Date.valueOf(reservation.getLe()));
+				System.out.println("ok2");
 				pStmt.setDate(3, java.sql.Date.valueOf(reservation.getPayeele()));
+				System.out.println("ok3");
+				System.out.println("**************************************PSTMT 1 :"+pStmt);
 				int n = pStmt.executeUpdate();
-				System.out.println(pStmt);
+				System.out.println("**************************************PSTMT 1 :"+pStmt);
 				ResultSet rs = pStmt.getGeneratedKeys();
 				if(rs.next()) {
 					int id = rs.getInt(1);
@@ -47,6 +51,7 @@ public class ReservationDaoJdbcImpl implements ReservationDao {
 				
 				
 				for( int i = 0 ; i < reservation.getLigneReservation().size() ; i++ ) {
+					
 					LigneReservation lr = reservation.getLigneReservation().get(i);
 					pStmt = cnx.prepareStatement(INSERT_LIGNE_RESERVATION);
 					pStmt.setInt(1, reservation.getIdReservation());
@@ -55,7 +60,8 @@ public class ReservationDaoJdbcImpl implements ReservationDao {
 					pStmt.setDate(4, java.sql.Date.valueOf(lr.getArrivee()));
 					pStmt.setDate(5, java.sql.Date.valueOf(lr.getDepart()));
 					pStmt.executeUpdate();
-					System.out.println(pStmt);
+
+					System.out.println("**************************************PSTMT 2 :"+pStmt);					
 					pStmt.close();
 				 }
 				cnx.commit();

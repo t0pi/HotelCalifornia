@@ -9,6 +9,9 @@ public interface ClientDao {
 
 
 	Client selectByTelephone(String telephone) throws Exception;
+
+
+	Client selectByTel(String telephone) throws Exception;
 	
 	//List<Client> selectByTelephone(String telephone) throws Exception;
 	

@@ -31,6 +31,9 @@ public class Client {
 	}
 
 
+	public Client(int idClient) {
+		// TODO Auto-generated constructor stub
+	}
 	public int getIdClient() {
 		return idClient;
 	}
