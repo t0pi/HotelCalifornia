@@ -2,6 +2,7 @@ package mysql.bll;
 
 import java.time.LocalDate;
 
+import gestionErreurs.BusinessException;
 import mysql.bo.Chambre;
 import mysql.bo.Client;
 import mysql.bo.LigneReservation;

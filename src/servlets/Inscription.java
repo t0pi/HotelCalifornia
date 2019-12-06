@@ -23,29 +23,16 @@ public class Inscription extends HttpServlet {
     public static final String CHAMP_PRENOM = "prenom";
     public static final String CHAMP_ADRESSE = "adresse";
     public static final String CHAMP_TELEPHONE = "tel";
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+
     public Inscription() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-		
 		RequestDispatcher rd = request.getRequestDispatcher(VUE);
 		rd.forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		/* Récupération des champs du formulaire. */
@@ -53,9 +40,6 @@ public class Inscription extends HttpServlet {
         String prenom = request.getParameter(CHAMP_PRENOM); 
         String adresse = request.getParameter(CHAMP_ADRESSE);
         String telephone = request.getParameter(CHAMP_TELEPHONE);
-       
-        
-        
         
         try {
         	validationNom(nom); 
@@ -77,10 +61,7 @@ public class Inscription extends HttpServlet {
         RequestDispatcher rd =
                 request.getRequestDispatcher("/WEB-INF//inscriptionTerminee.jsp");
         rd.forward(request, response);
-        
-        
 	}
-	
 	
 	private void validationNom( String nom ) throws Exception{
 		
@@ -97,7 +78,5 @@ public class Inscription extends HttpServlet {
      private void validationTelephone( String telephone ) throws Exception {
     	 
      }
-	
-	
 
 }
